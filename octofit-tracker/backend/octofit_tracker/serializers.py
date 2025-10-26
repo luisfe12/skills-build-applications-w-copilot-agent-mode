@@ -12,6 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ActivitySerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
     class Meta:
         model = Activity
         fields = '__all__'
@@ -22,6 +23,7 @@ class WorkoutSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class LeaderboardSerializer(serializers.ModelSerializer):
+    team = TeamSerializer(read_only=True)
     class Meta:
         model = Leaderboard
         fields = '__all__'

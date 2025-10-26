@@ -27,8 +27,10 @@ class Command(BaseCommand):
         ]
 
         # Crear actividades
-        Activity.objects.create(user=users[0], type='Running', duration=30, date='2025-10-25')
-        Activity.objects.create(user=users[3], type='Cycling', duration=45, date='2025-10-25')
+        act1 = Activity(user=users[0], type='Running', duration=30, date='2025-10-25')
+        act1.save(force_insert=True)
+        act2 = Activity(user=users[3], type='Cycling', duration=45, date='2025-10-25')
+        act2.save(force_insert=True)
 
         # Crear workouts
         w1 = Workout.objects.create(name='Full Body', description='Entrenamiento completo')
@@ -37,7 +39,9 @@ class Command(BaseCommand):
         w2.suggested_for.set(users[3:])
 
         # Crear leaderboard
-        Leaderboard.objects.create(team=marvel, points=100)
-        Leaderboard.objects.create(team=dc, points=120)
+        lb1 = Leaderboard(team=marvel, points=100)
+        lb1.save(force_insert=True)
+        lb2 = Leaderboard(team=dc, points=120)
+        lb2.save(force_insert=True)
 
         self.stdout.write(self.style.SUCCESS('octofit_db poblada con datos de prueba (superhéroes, equipos Marvel y DC)'))
